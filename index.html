@@ -17,32 +17,18 @@
     <p><strong>IMPORTANT:</strong> Any requests that break the license of a mod, vehicle, or other content will result in an <u>immediate ban</u> from the DeputyMods server and mod downloads.</p>
   </div>
 
-  <div class="request-form">
-    <h2>Request a Service</h2>
-    <form id="serviceRequestForm">
-      <label for="discordID">Discord User ID</label>
-      <input type="text" id="discordID" name="discordID" required>
-
-      <label for="discordUsername">Discord Username</label>
-      <input type="text" id="discordUsername" name="discordUsername" required>
-
-      <label for="service">Select Service</label>
-      <select id="service" name="service" required>
-        <option value="Custom Configs for mods">Custom Configs for mods (GTAV Only)</option>
-        <option value="Custom Configs for my mods">Custom Configs for my mods (GTAV Only)</option>
-        <option value="Car Debagging">Car Debagging (FiveM Only) (NOT AVAILABLE)</option>
-        <option value="FiveM Server Main Set Up">FiveM Server Main Set Up (FiveM Only)</option>
-      </select>
-
-      <label>
-        <input type="checkbox" id="discordCheck" required> I have joined the Discord server
-      </label>
-
-      <label for="completionTime">Desired Completion Time</label>
-      <input type="text" id="completionTime" name="completionTime" placeholder="e.g., 2 days" required>
-
-      <button type="button" onclick="submitRequest()">Submit Request</button>
-    </form>
+  <!-- Google Form Embed with Themed Container -->
+  <div class="form-container">
+    <h3>Service Request Form</h3>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfWkVq9Lqu8zQoGmbbmzZBN8ulG9BytAf7K6AhkPih-aIEOpA/viewform?usp=sf_link" 
+      width="100%" 
+      height="800" 
+      frameborder="0" 
+      marginheight="0" 
+      marginwidth="0">
+      Loading…
+    </iframe>
   </div>
 
   <!-- Footer Section -->
@@ -50,48 +36,6 @@
     <p>DeputyMods © 2024</p>
     <a href="https://mods.deputymods.com" class="mod-list-button" target="_blank">View Our Mod List</a>
   </footer>
-
-  <script>
-    // JavaScript to handle the Discord Webhook request
-    function submitRequest() {
-      const discordID = document.getElementById('discordID').value;
-      const discordUsername = document.getElementById('discordUsername').value;
-      const service = document.getElementById('service').value;
-      const completionTime = document.getElementById('completionTime').value;
-      const discordCheck = document.getElementById('discordCheck').checked;
-
-      if (!discordCheck) {
-        alert("Please confirm you've joined the Discord server.");
-        return;
-      }
-
-      const webhookURL = "https://discord.com/api/webhooks/1282885630245732352/4NJSS2RqRBJEzarDrIeX2Z6KT6p7DNyg90pp-CR8dLcJIgJ9qrpCEbUmKgQwNQCpXrqB";
-
-      const requestData = {
-        content: `**New Service Request**\n\n**Discord ID**: ${discordID}\n**Username**: ${discordUsername}\n**Service**: ${service}\n**Completion Time**: ${completionTime}`
-      };
-
-      fetch(webhookURL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-      })
-      .then(response => {
-        if (response.ok) {
-          alert("Request submitted successfully!");
-          document.getElementById('serviceRequestForm').reset();
-        } else {
-          alert("Failed to submit request. Please try again.");
-        }
-      })
-      .catch(error => {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
-      });
-    }
-  </script>
 
 </body>
 </html>
